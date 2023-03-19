@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# TODO: FIND BETTER WAY (THIS REQUIRES PAMIXER ON PULSEAUDIO OR AMIXER ON ALSA)
+
+pamixer --get-volume
