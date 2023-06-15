@@ -34,8 +34,17 @@ fn main() {
                 .output()
                 .expect("Failed to execute command");
 
-            let volume = output.stdout[0] as i32;
-            println!("{}", volume);
+            // Pop off % sign
+            let mut outputvec = output.stdout;
+            let _ = outputvec.pop();
+            let _ = outputvec.pop();
+
+            println!("joey diaz {:?}", outputvec);
+
+            // Convert the output to a string.
+            let output_str = String::from_utf8(outputvec).unwrap();
+
+            let volume = output_str.parse::<i32>().unwrap();
 
             // If the volume is over 50, change the image.
             if volume > 50 {
