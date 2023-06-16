@@ -5,6 +5,11 @@ use gtk::glib::Continue;
 use std::process::Command;
 use std::path::Path;
 
+// TODO: png -> svg
+// TODO: run in background and open upon detecting change
+// TODO: make floating through config?
+// TODO: add volume bar
+
 fn main() {
     // Initialize GTK.
     gtk::init().expect("Failed to initialize GTK.");
@@ -46,12 +51,13 @@ fn main() {
 
             let volume = output_str.parse::<i32>().unwrap();
 
-            // If the volume is over 50, change the image.
-            if volume > 50 {
-                image.set_from_file(Some("images/1.png"));
-            } else {
-                image.set_from_file(Some("images/0.png"));
-            }
+
+            if volume == 0       { image.set_from_file(Some("images/0.png")); }
+            else if volume < 25  { image.set_from_file(Some("images/1.png")); }
+            else if volume < 50  { image.set_from_file(Some("images/2.png")); }
+            else if volume < 75  { image.set_from_file(Some("images/3.png")); }
+            else if volume < 100 { image.set_from_file(Some("images/4.png")); }
+            else                 { image.set_from_file(Some("images/5.png")); }
 
             // We return `Continue(true)` so that the timeout function is called again after the timeout period.
             // If we returned `Continue(false)`, the function would not be called again.
