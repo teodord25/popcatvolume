@@ -5,7 +5,7 @@ use gtk::glib::Continue;
 use std::process::Command;
 use std::path::Path;
 
-// TODO: png -> svg
+// TODO: should I even use these svgs?
 // TODO: run in background and open upon detecting change
 // TODO: make floating through config?
 // TODO: add volume bar
