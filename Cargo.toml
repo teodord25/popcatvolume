@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 gtk = "0.17.1"
+gdk = "0.17.1"

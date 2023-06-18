@@ -4,10 +4,11 @@ use gtk::{Window, WindowType, Image, Orientation};
 use gtk::glib::Continue;
 use std::process::Command;
 use std::path::Path;
+use gdk::WindowTypeHint;
 
 // TODO: should I even use these svgs?
 // TODO: run in background and open upon detecting change
-// TODO: make floating through config?
+// TODO: floating achieved?
 // TODO: add volume bar
 
 fn main() {
@@ -16,8 +17,9 @@ fn main() {
 
     // Create a new top-level window.
     let window = Window::new(WindowType::Toplevel);
-    window.set_title("Volume Monitor");
+    window.set_title("all_is_kitty");
     window.set_default_size(200, 200);
+    window.set_type_hint(WindowTypeHint::Notification);
 
     // Create a vertical box container to pack the image into.
     let vbox = gtk::Box::new(Orientation::Vertical, 0);
@@ -50,7 +52,6 @@ fn main() {
             let output_str = String::from_utf8(outputvec).unwrap();
 
             let volume = output_str.parse::<i32>().unwrap();
-
 
             if volume == 0       { image.set_from_file(Some("images/0.png")); }
             else if volume < 25  { image.set_from_file(Some("images/1.png")); }
