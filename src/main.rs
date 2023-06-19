@@ -3,7 +3,6 @@ use gtk::prelude::*;
 use gtk::{Window, WindowType, Image, Orientation};
 use gtk::glib::Continue;
 use std::process::Command;
-use std::path::Path;
 use gdk::WindowTypeHint;
 
 // TODO: should I even use these svgs?
@@ -45,8 +44,6 @@ fn main() {
             let mut outputvec = output.stdout;
             let _ = outputvec.pop();
             let _ = outputvec.pop();
-
-            println!("joey diaz {:?}", outputvec);
 
             // Convert the output to a string.
             let output_str = String::from_utf8(outputvec).unwrap();
