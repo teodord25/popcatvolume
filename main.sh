@@ -15,5 +15,4 @@ elif [[ $1 == show ]]; then
 
     kitty +kitten icat images/$2.png
 
-    # TODO: round corners to match window radius?
 fi
