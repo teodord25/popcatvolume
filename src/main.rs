@@ -57,12 +57,14 @@ fn main() {
                 // Set the new volume to GOOBER environment variable
                 env::set_var("GOOBER", volume.to_string());
 
-                if volume == 0       { image.set_from_file(Some("images/0.png")); }
-                else if volume < 25  { image.set_from_file(Some("images/1.png")); }
-                else if volume < 50  { image.set_from_file(Some("images/2.png")); }
-                else if volume < 75  { image.set_from_file(Some("images/3.png")); }
-                else if volume < 100 { image.set_from_file(Some("images/4.png")); }
-                else                 { image.set_from_file(Some("images/5.png")); }
+                image.set_from_file(Some(match volume {
+                    0 => "images/0.png",
+                    _ if volume < 25 => "images/1.png",
+                    _ if volume < 50 => "images/2.png",
+                    _ if volume < 75 => "images/3.png",
+                    _ if volume < 100 => "images/4.png",
+                    _ => "images/5.png",
+                }));
 
                 window_clone.show_now();
 
@@ -75,8 +77,8 @@ fn main() {
             }
 
 
-            // We return `Continue(true)` so that the timeout function is called again after the timeout period.
-            // If we returned `Continue(false)`, the function would not be called again.
+            // return `Continue(true)` so that the timeout function is called again after the timeout period.
+            // if we returned `Continue(false)`, the function would not be called again.
             Continue(true)
         }
     });
